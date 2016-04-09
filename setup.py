@@ -45,7 +45,7 @@ setup(
     keywords="management usermanagement permission",
     author="FeLiX StEpHeN",
     author_email="felsen88@gmail.com",
-    url="https://github.com/felsen/apps/usermgmt",
+    url="https://github.com/felsen/usermgmt",
     license="MIT",
     include_package_data=False,
     package_data={
