@@ -39,7 +39,7 @@ class Menus(Base):
         super(Menus, self).save(*args, **kwargs)
 
 
-class Role_Types(Base):
+class RoleTypes(Base):
     """
     User Type has stored in this table Ex: Employee, Customer, etc,...
     """
@@ -56,15 +56,15 @@ class Role_Types(Base):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super(Role_Types, self).save(*args, **kwargs)
+        super(RoleTypes, self).save(*args, **kwargs)
 
 
-class User_Roles(Base):
+class UserRoles(Base):
     """
     User and the role type has stored in this table.
     """
     user = models.ForeignKey(User, blank=True, null=True)
-    role_type = models.ManyToManyField(Role_Types, related_name="role_type_related_to_user_%(class)s")
+    role_type = models.ManyToManyField(RoleTypes, related_name="role_type_related_to_user_%(class)s")
     active = models.IntegerField(default=2)
     created_by = models.ForeignKey(User, blank=True, null=True, related_name="User_related_to_created_by_%(class)s")
     modified_by = models.ForeignKey(User, blank=True, null=True, related_name="User_related_to_modified_by_%(class)s")
@@ -76,11 +76,11 @@ class User_Roles(Base):
         return "%s" % (self.user.name)
 
 
-class Role_Configuration(Base):
+class RoleConfiguration(Base):
     """
     Assigning the menu based permission in this table.
     """
-    role = models.ForeignKey(Role_Types)
+    role = models.ForeignKey(RoleTypes)
     menu = models.ForeignKey(Menus)
     add = models.IntegerField(blank=True, null=True)
     edit = models.IntegerField(blank=True, null=True)
