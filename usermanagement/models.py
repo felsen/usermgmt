@@ -10,7 +10,6 @@ class Base(models.Model):
     """
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
-    active = models.IntegerField(default=2)
 
     class Meta:
         abstract = True
@@ -20,13 +19,14 @@ class Menus(Base):
     """
     Menu and sub menu has added by the user
     """
-    name = models.CharField("Menu Name", max_length=30, blank=True, null=True)
+    name = models.CharField("Menu Name", max_length=30)
     slug = models.SlugField("SEO friendly URL, use alphabets and hyphen",
         blank=True, null=True)
     parent = models.ForeignKey("self", blank=True, null=True)
     link = models.CharField("Link", max_length=20, blank=True, null=True)
+    active = models.IntegerField(default=2)
     created_by = models.ForeignKey(User, blank=True, null=True, 
-        related_name="%(class)s_relatedto_users")
+    	related_name="%(class)s_relatedto_users")
 
     class Meta:
         ordering = ["name"]
@@ -47,11 +47,12 @@ class RoleTypes(Base):
     """
     User Type has stored in this table Ex: Employee, Customer, etc,...
     """
-    name = models.CharField("Role Name", max_length=50, blank=True, null=True)
+    name = models.CharField("Role Name", max_length=50)
     slug = models.SlugField("SEO friendly URL, use alphabets and hyphen",
         blank=True, null=True)
     created_by = models.ForeignKey(User, blank=True, null=True,
         related_name="%(class)s_related_users")
+    active = models.IntegerField(default=2)
 
     class Meta:
         ordering = ["name"]
@@ -69,8 +70,9 @@ class UserRoles(Base):
     """
     User and the role type has stored in this table.
     """
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User)
     role_type = models.ForeignKey(RoleTypes, related_name="%(class)s_related_roletypes")
+    active = models.IntegerField(default=2)
     created_by = models.ForeignKey(User, blank=True, null=True,
         related_name="%(class)s_related_created_users")
     modified_by = models.ForeignKey(User, blank=True, null=True,
@@ -96,6 +98,7 @@ class RoleConfiguration(Base):
     delete = models.IntegerField(blank=True, null=True)
     search = models.IntegerField(blank=True, null=True)
     report = models.IntegerField(blank=True, null=True)
+    active = models.IntegerField(default=2)
     created_by = models.ForeignKey(User, blank=True, null=True,
         related_name="%(class)s_related_created_user")
     modified_by = models.ForeignKey(User, blank=True, null=True,
