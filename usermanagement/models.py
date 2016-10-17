@@ -83,7 +83,7 @@ class UserRoles(Base):
         verbose_name_plural = "UserRoles"
 
     def __unicode__(self):
-        return "%s" % (self.user.name)
+        return "%s" % (self.user.username)
 
 
 class RoleConfiguration(Base):
