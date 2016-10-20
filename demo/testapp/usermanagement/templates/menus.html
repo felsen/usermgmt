@@ -1,0 +1,42 @@
+{% for error in form.non_field_errors %} {{ error }} {% endfor %}
+
+{% if key == "Add" %}
+<form action="/user-add-menu/" method="POST" accept-charset="utf-8" autocomplete="off">{% csrf_token %}
+{% elif key == "Edit" %}
+<form action="/user-edit-menu/{{menuid}}/" method="POST" accept-charset="utf-8" autocomplete="off">{% csrf_token %}
+{% endif %}
+	{% for field in form %}
+		<div class="form-group row">
+		  <label class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+		  <div class="col-sm-10">
+			{{ field }} {% if field.help_text %} ({{ field.help_text }}) {% endif %}
+			<span class="error">{{ field.errors|striptags }}</span>
+		  </div>
+		</div>
+	{% endfor %}
+	<br>
+	<input type="submit" value="Submit" />
+</form>
+
+<br>
+<br>
+<br>
+<br>
+
+<table class="table table-bordered" style="width:20%;">
+	<thead>
+		<tr>
+			<th>Name</th> 
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for i in obj %}
+			<tr>
+				<td>{{i.name}}</td>
+				<td>{% if i.parent %}{{i.parent}} {% endif %}</td>
+				<td><a href="/user-edit-menu/{{i.id}}/" title="">Edit Menu</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

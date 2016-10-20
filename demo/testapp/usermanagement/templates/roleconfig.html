@@ -1,0 +1,61 @@
+{% load usermgmt_tags %}
+<form action = "/user-add-role-config/{{roleid}}/" method = "POST" autocomplete="off">{% csrf_token %}
+	<table>
+		<thead>
+			<tr>
+				<th>S.No</th>
+				<th>Menu</th>
+				<th>Add</th>
+				<th>Edit</th>
+				<th>View</th>
+				<th>Delete</th>
+				<th>Report</th>
+				<th>Search</th>
+			</tr>
+		</thead>
+
+
+		{% for i in menu %}
+			<tr>
+				<td>
+					{{forloop.counter}}
+					<input type = "hidden" name = "menu" value = "{{i.pk}}" />
+				</td>
+				<td> 
+				{% if i.parent.parent.parent %} {{i.parent.parent.parent.name}} >> {% endif %} 
+				{% if i.parent.parent %} {{i.parent.parent.name}} >> {% endif %} 
+				{% if i.parent %} {{i.parent.name}} >> {% endif %}{{i.name}} 
+				</td>
+
+				{% with i.pk|get_menu_values:roleid as obj %}
+					<td> <input type = "checkbox" name = "add_{{i.pk}}_{{roleid}}" {% if obj.add == 2 %} value = "True" checked{% else %} value = "" {% endif %} /> </td>
+					<td> <input type = "checkbox" name = "edit_{{i.pk}}_{{roleid}}" {% if obj.edit == 2 %}value = "True" checked{% else %} value = "" {% endif %} /> </td>
+					<td> <input type = "checkbox" name = "view_{{i.pk}}_{{roleid}}" {% if obj.view == 2 %}value = "True" checked{% else %} value = "" {% endif %} /> </td>
+					<td> <input type = "checkbox" name = "delete_{{i.pk}}_{{roleid}}" {% if obj.delete == 2 %}value = "True" checked{% else %} value = "" {% endif %} /> </td>
+					<td> <input type = "checkbox" name = "report_{{i.pk}}_{{roleid}}" {% if obj.report == 2 %}value = "True" checked{% else %} value = "" {% endif %} /> </td>
+					<td> <input type = "checkbox" name = "search_{{i.pk}}_{{roleid}}" {% if obj.search == 2 %}value = "True" checked{% else %} value = "" {% endif %} /> </td>
+				{% endwith %}
+
+			</tr>
+		{% endfor %}
+
+		<tbody>
+		</tbody>
+	</table>
+	<button type="submit" class="btn btn-info btn-xs unitedit" >Save</i></button>
+</form>
+
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+<script type = "text/javascript">
+	$(document).ready(function(){
+		$("input[type=checkbox]").change(function(){
+			if ($(this).prop('checked') == true){
+				$(this).val('True');
+			} else if ($(this).prop('checked') == false){
+				$(this).val('');
+			}
+		});
+	});
+</script>
