@@ -16,6 +16,9 @@
     <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/static/build/css/custom.min.css" rel="stylesheet">
+    <style>
+      .fa-chevron-down{ width: 10%; height: 16px; padding: 2px 3px; }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -52,7 +55,7 @@
                      {% for m in menus %}
                        <li>
                          <a>
-                           <i class="fa fa-coffee"></i> {{ m.name }} {% if m.get_submenu %} <span class="fa fa-chevron-down"></span>{% endif %}
+                           <i class="fa fa-coffee"></i> {{ m.name }} {% if m.get_submenu %}<span class="fa fa-chevron-down"></span>{% endif %}
                          </a>
                          {% if m.get_submenu %}
                            {% for sm in m.get_submenu %}
@@ -67,7 +70,7 @@
                      {% endfor %}
                    {% endif %}
                   {% endwith %}
-                  <li>
+<!--                   <li>
                     <a>
                       <i class="fa fa-coffee"></i>
                       Multilevel Menu
@@ -90,7 +93,7 @@
                         <li><a href="#level1_2">Level One</a></li>
                       </li>
                     </ul>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -158,5 +161,6 @@
     <script src="/static/vendors/iCheck/icheck.min.js"></script>
     <!-- Custom JS -->
     <script src="/static/build/js/custom.js"></script>
+
   </body>
 </html>
