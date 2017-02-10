@@ -10,7 +10,7 @@ def get_user_menus(user):
         role_config_ids = RoleConfiguration.objects.filter(role=user_roles.role_type).only('menu').values_list('menu__id', flat=True)
         menus_items = Menus.objects.filter(id__in=map(int, role_config_ids), parent=None).order_by('order')
     except Exception as e:
-        print "Error - get_user_menus [%s]"%(e.message)
+        print "Error - get_user_menus {}".format(e.message)
         menus_items = []
     return menus_items
 
@@ -28,7 +28,8 @@ def get_menu_values(menu_pk, roleid):
         val_dict['delete'] = role_config.delete
         val_dict['report'] = role_config.report
         val_dict['search'] = role_config.search
-    except Exception:
+    except Exception as e:
+        print "Error - get_menu_values {}".format(e.message)
         val_dict = {
             'add': None,
             'edit': None,
