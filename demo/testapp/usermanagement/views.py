@@ -4,6 +4,7 @@ from usermanagement.forms import MenuForm, RoleTypesForm, UserRolesForm
 
 
 def home(request):
+    s = "felix"
     return render(request, 'index.html', locals())
 
 def menus(request):
