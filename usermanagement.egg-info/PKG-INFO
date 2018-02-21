@@ -1,0 +1,24 @@
+Metadata-Version: 1.1
+Name: usermanagement
+Version: 0.0.1
+Summary: A simple usermanagement system which controls the application based on user roles
+Home-page: https://github.com/felsen/usermgmt
+Author: FeLiX StEpHeN
+Author-email: felsen88@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: Under Development
+        
+Keywords: management usermanagement permission
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: Aladdin Free Public License (AFPL)
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

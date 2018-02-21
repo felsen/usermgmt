@@ -1,5 +1,7 @@
 # coding=utf-8
-import sys
+
+import os
+import io
 from setuptools import setup, find_packages
 
 NAME = 'usermanagement'
@@ -7,7 +9,6 @@ VERSION = '0.0.1'
 
 
 def read(filename):
-    import os
     BASE_DIR = os.path.dirname(__file__)
     filename = os.path.join(BASE_DIR, filename)
     with open(filename, 'r') as fi:
@@ -19,9 +20,12 @@ def readlist(filename):
     rows = [x.strip() for x in rows if x.strip()]
     return list(rows)
 
-here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+here = os.path.abspath(os.path.dirname(__file__))
+
+
+with io.open(os.path.join(here, 'README.rst'), encoding='utf-8',
+             errors='ignore') as f:
     long_description = f.read()
 
 setup(
@@ -41,7 +45,7 @@ setup(
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Application Frameworks",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        ],
+    ],
     keywords="management usermanagement permission",
     author="FeLiX StEpHeN",
     author_email="felsen88@gmail.com",
@@ -50,7 +54,7 @@ setup(
     include_package_data=False,
     package_data={
         '': ['README.rst', 'requirements.txt', ],
-        },
+    },
     install_requires=readlist('requirements.txt'),
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 )
